@@ -1,0 +1,53 @@
+#include <SFML/Graphics.hpp>
+#include <iostream>
+#include <vector>
+
+int main()
+{
+	sf::RenderWindow pencere(sf::VideoMode(400, 400), "ilkpencere");
+
+	int yesilYC = 50;
+	int maviYC = 90;
+	int sariYC = 60;
+	int kirmiziYC = 30;
+	int kareBoy = 200;
+
+	sf::CircleShape daireYesil(yesilYC);
+	sf::CircleShape daireMavi(maviYC);
+	sf::CircleShape daireSari(sariYC);
+	sf::CircleShape daireKirmizi(kirmiziYC);
+	sf::RectangleShape kare(sf::Vector2f(kareBoy, kareBoy));
+	sf::Vector2f posKare(100, 100);
+	kare.setPosition(posKare);
+	daireYesil.setPosition(sf::Vector2f(100-yesilYC, 100-yesilYC));
+	daireMavi.setPosition(sf::Vector2f(300-maviYC, 100-maviYC));
+	daireKirmizi.setPosition(sf::Vector2f(100-kirmiziYC, 300-kirmiziYC));
+	daireSari.setPosition(sf::Vector2f(300-sariYC, 300-sariYC));
+	daireYesil.setFillColor(sf::Color::Green);
+	daireKirmizi.setFillColor(sf::Color::Red);
+	daireMavi.setFillColor(sf::Color::Blue);
+	daireSari.setFillColor(sf::Color::Yellow);
+
+
+	while (pencere.isOpen())
+	{
+		sf::Event olay;
+
+		while (pencere.pollEvent(olay))
+		{
+			if (olay.type == sf::Event::Closed)
+			{
+				pencere.close();
+			}
+		}
+
+		pencere.clear();
+		pencere.draw(daireYesil);
+		pencere.draw(daireMavi);
+		pencere.draw(kare);
+		pencere.draw(daireSari);
+		pencere.draw(daireKirmizi);
+		pencere.display();
+
+	}
+}

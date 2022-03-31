@@ -1,0 +1,65 @@
+#include <SFML/Graphics.hpp>
+#include <iostream>
+#include <vector>
+
+int main()
+{
+	sf::RenderWindow pencere(sf::VideoMode(400, 400), "ilkpencere");
+	sf::CircleShape yesil(50);
+	sf::CircleShape kirmizi(50);
+	sf::Clock saat;
+
+	kirmizi.setFillColor(sf::Color::Red);
+	yesil.setFillColor(sf::Color::Green);
+	float x = 0;
+	float y = 0;
+	float yatay = 0;
+	float dikey = 0;
+	sf::Time gecenSure;
+	while (pencere.isOpen())
+	{
+		sf::Event olay;
+
+		while (pencere.pollEvent(olay))
+		{
+			if (olay.type == sf::Event::Closed)
+			{
+				pencere.close();
+			}
+			if (olay.type == sf::Event::KeyPressed)
+			{
+				if (olay.key.code == sf::Keyboard::Space)
+				{
+					y = 30;
+					x = 30;
+				}
+			}
+		}
+		pencere.clear();
+		pencere.draw(yesil);
+		pencere.draw(kirmizi);
+		pencere.display();
+		yesil.setPosition(sf::Vector2f(150+yatay, 150));
+		kirmizi.setPosition(sf::Vector2f(150, 150+dikey));
+		if (yesil.getPosition().x >= 300.0f)
+		{
+			x = -30;
+		}
+		if (yesil.getPosition().x <= 0.0f)
+		{
+			x = 30;
+		}
+		if (kirmizi.getPosition().y >= 300.0f)
+		{
+			y = -30;
+		}
+		if (kirmizi.getPosition().y <= 0.0f)
+		{
+			y = 30;
+		}
+		yatay += x * gecenSure.asSeconds();
+		dikey += y * gecenSure.asSeconds();
+		gecenSure = saat.restart();
+		
+	}
+}

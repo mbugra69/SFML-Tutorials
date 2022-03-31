@@ -1,0 +1,60 @@
+#include <SFML/Graphics.hpp>
+#include <iostream>
+#include <vector>
+
+int main()
+{
+	sf::RenderWindow pencere(sf::VideoMode(400, 400), "ilkpencere");
+	sf::RectangleShape kare(sf::Vector2f(50, 50));
+	sf::Clock saat;
+
+	float x = 0;
+	float y = 0;
+	float yatay = 0;
+	float dikey = 0;
+	sf::Time gecenSure;
+
+	while (pencere.isOpen())
+	{
+		sf::Event olay;
+
+		while (pencere.pollEvent(olay))
+		{
+			if (olay.type == sf::Event::Closed)
+			{
+				pencere.close();
+			}
+			if (olay.type == sf::Event::KeyPressed)
+			{
+				if (olay.key.code == sf::Keyboard::Left)
+				{
+					x = -20;
+					y = 0;
+				}
+				if (olay.key.code == sf::Keyboard::Right)
+				{
+					x = 20;
+					y = 0;
+				}
+				if (olay.key.code == sf::Keyboard::Up)
+				{
+					y = -20;
+					x = 0;
+				}
+				if (olay.key.code == sf::Keyboard::Down)
+				{
+					y = 20;
+					x = 0;
+				}
+			}
+		}
+		pencere.clear();
+		pencere.draw(kare);
+		pencere.display();
+		kare.setPosition(sf::Vector2f(yatay, dikey));
+		yatay += x * gecenSure.asSeconds();
+		dikey += y * gecenSure.asSeconds();
+		gecenSure = saat.restart();
+		
+	}
+}
