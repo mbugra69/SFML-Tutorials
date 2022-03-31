@@ -1,0 +1,3 @@
+﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(499,5): warning MSB8004: Output dizini sonda bir eğik çizgiyle bitmiyor. Output dizininin düzgün değerlendirilmesi için bu eğik çizgi gerekli olduğundan bu oluşturma örneği eğik çizgiyi ekleyecek.
+  Soru4-Daireler.cpp
+  BubbleGame.vcxproj -> C:\Users\Buğra\Desktop\SFML\bin\BubbleGame.exe
